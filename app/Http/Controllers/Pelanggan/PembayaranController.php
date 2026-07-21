@@ -31,8 +31,14 @@ class PembayaranController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+            'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+        ],
+        [
+        'bukti_pembayaran.required' => 'Bukti pembayaran wajib diunggah.',
+        'bukti_pembayaran.image'    => 'File yang diunggah harus berupa gambar.',
+        'bukti_pembayaran.mimes'    => 'Format file harus JPG, JPEG, atau PNG.',
+        'bukti_pembayaran.max'      => 'Ukuran file maksimal 5 MB.',
+    ]);
 
         $penyewaan = Penyewaan::where(
             'id_pelanggan',

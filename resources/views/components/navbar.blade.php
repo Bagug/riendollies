@@ -1,3 +1,7 @@
+@php
+    $cartCount = count(session('cart', []));
+@endphp
+
 <nav class="relative z-50 bg-gray-100" x-data="{
         mobileOpen: false,
         profileOpen: false
@@ -25,8 +29,45 @@
                 </div>
             </div>
 
+
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
+
+                    <a href="{{ route('pelanggan.cart') }}"
+                        class="relative p-2 rounded-full hover:bg-blue-50  hover:text-blue-600 transition mr-8">
+
+                        <!-- keranjang -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                            stroke="currentColor" class="w-7 h-7">
+
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 3h1.386a.75.75 0 01.728.568l.894 3.577m0 0L6.75 15h10.878a.75.75 0 00.728-.568l1.35-5.4a.75.75 0 00-.728-.932H5.258zM6.75 18.75a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm10.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                        </svg>
+
+                        @if($cartCount > 0)
+                                <span class="
+                            absolute
+                            -top-1
+                            -right-1
+                            bg-red-500
+                            text-white
+                            text-[9px]
+                            font-bold
+                            rounded-full
+                            min-w-4
+                            h-4
+                            flex
+                            items-center
+                            justify-center
+                            px-1
+                            ">
+
+                                    {{ $cartCount }}
+
+                                </span>
+                        @endif
+
+                    </a>
 
                     <div class="relative ml-3">
 
@@ -54,7 +95,8 @@
 
                         </button>
                         <!-- dropdown -->
-                        <div x-cloak x-show="profileOpen" @click.outside="profileOpen = false" @keydown.escape.window="profileOpen = false"
+                        <div x-cloak x-show="profileOpen" @click.outside="profileOpen = false"
+                            @keydown.escape.window="profileOpen = false"
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-150"
@@ -86,9 +128,7 @@
                                 <form action="{{ route('pelanggan.logout') }}" method="POST">
                                     @csrf
 
-                                    <button
-    type="submit"
-    class="block w-full px-4 py-2 text-left hover:bg-gray-100">
+                                    <button type="submit" class="block w-full px-4 py-2 text-left hover:bg-gray-100">
                                         Logout
 
                                     </button>
@@ -157,19 +197,19 @@
 
             @if(session('login_pelanggan'))
 
-    <div class="border-b px-4 pb-3">
+                <div class="border-b px-4 pb-3">
 
-        <p class="font-semibold">
-            {{ session('nama') }}
-        </p>
+                    <p class="font-semibold">
+                        {{ session('nama') }}
+                    </p>
 
-        <p class="text-sm text-gray-500">
-            {{ session('username') }}
-        </p>
+                    <p class="text-sm text-gray-500">
+                        {{ session('username') }}
+                    </p>
 
-    </div>
+                </div>
 
-@endif
+            @endif
 
             <div class="mt-3 space-y-1 px-2">
 
@@ -181,7 +221,8 @@
 
                     <form action="{{ route('pelanggan.logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="block w-full rounded-md px-3 py-2 text-left text-base font-medium hover:bg-gray-100">
+                        <button type="submit"
+                            class="block w-full rounded-md px-3 py-2 text-left text-base font-medium hover:bg-gray-100">
                             Logout
                         </button>
                     </form>

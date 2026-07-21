@@ -4,27 +4,73 @@
 
     <div class="max-w-7xl mx-auto py-10">
 
-        <h1 class="text-3xl font-bold mb-8">
-            Dekorasi Pernikahan
-        </h1>
+        <div class="relative flex items-center mb-8">
+
+            <!-- Tombol Kembali -->
+            <a href="/layanan"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+
+                Kembali
+            </a>
+
+
+            <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
+                Keranjang Saya
+            </h1>
+
+        </div>
+
+
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
             @foreach($dekorasis as $dekorasi)
 
-                <div class="bg-white rounded-lg shadow p-5">
 
-                    <h2 class="font-bold text-xl">
-                        {{ $dekorasi->nama_dekorasi }}
-                    </h2>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
 
-                    <p class="text-blue-600 font-semibold">
-                        Rp {{ number_format($dekorasi->harga, 0, ',', '.') }}
-                    </p>
+                    {{-- Gambar --}}
+                    @if($dekorasi->images->isNotEmpty())
+                        <img src="{{ asset('storage/' . $dekorasi->images->first()->image) }}"
+                            alt="{{ $dekorasi->nama_dekorasi }}" class="w-full h-56 object-cover">
 
-                    <a href="{{ route('pelanggan.dekorasi.show', $dekorasi->slug) }}">
-                        Detail
-                    </a>
+                    @else
+                        <img src="{{ asset('images/no-image.png') }}" class="w-full h-56 object-cover">
+                    @endif
+
+                    <div class="p-5">
+
+                        {{-- Nama --}}
+                        <h2 class="text-xl font-bold text-gray-800 text-center">
+                            {{ $dekorasi->nama_dekorasi }}
+                        </h2>
+
+                        {{-- Deskripsi --}}
+                        <p class="mt-2 text-gray-500 text-sm leading-relaxed text-center">
+                            {{ Str::limit($dekorasi->deskripsi, 80) }}
+                        </p>
+
+                        {{-- Harga --}}
+                        <p class="mt-4 text-2xl font-bold text-green-600 text-center">
+                            Rp {{ number_format($dekorasi->harga, 0, ',', '.') }}
+                        </p>
+
+                        {{-- Tombol --}}
+                        <a href="{{ route('pelanggan.dekorasi.show', $dekorasi->slug) }}"
+                            class="mt-5 inline-block w-full rounded-lg bg-blue-600 py-2 text-center font-semibold text-white hover:bg-blue-700 transition">
+
+                            Lihat Detail
+
+                        </a>
+
+                    </div>
 
                 </div>
 

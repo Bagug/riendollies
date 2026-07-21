@@ -128,6 +128,7 @@
                         <th class="border p-3">Jenis</th>
                         <th class="border p-3">Nama Layanan</th>
                         <th class="border p-3">Qty</th>
+                        <th class="border p-3">Alamat Acara</th>
                         <th class="border p-3">Harga</th>
                         <th class="border p-3">Subtotal</th>
 
@@ -154,6 +155,10 @@
 
                             <td class="border p-3 text-center">
                                 {{ $detail->qty }}
+                            </td>
+
+                            <td class="border p-3 text-center">
+                            {{ $penyewaan->alamat_acara }}
                             </td>
 
                             <td class="border p-3 text-center">
@@ -248,7 +253,7 @@
         </div>
 
         @if ($penyewaan->pembayaran && $penyewaan->pembayaran->status_verifikasi == 'Menunggu Verifikasi')
-            <div class="mt-6 flex gap-3">
+            <div class="mt-6 flex justify-center gap-3">
 
                 <form action="{{ route('admin.penyewaan.setujui', $penyewaan->id_penyewaan) }}" method="POST">
                     @csrf
@@ -273,7 +278,7 @@
         @endif
 
         @if ($penyewaan->status == 'Disetujui')
-            <div class="mt-6">
+            <div class="mt-6 flex item-center justify-center">
 
                 <form action="{{ route('admin.penyewaan.selesai', $penyewaan->id_penyewaan) }}" method="POST"
                     onsubmit="return confirm('Apakah penyewaan ini sudah selesai?')">
@@ -281,7 +286,7 @@
                     @csrf
                     @method('PATCH')
 
-                    <button class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg">
+                    <button class=" bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg">
 
                         Tandai Selesai
 

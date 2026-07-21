@@ -27,6 +27,8 @@ return new class extends Migration
 
     $table->date('tanggal_selesai');
 
+    $table->text('alamat_acara');
+
     $table->decimal('total_harga', 15, 2)->default(0);
 
     $table->enum('status', [

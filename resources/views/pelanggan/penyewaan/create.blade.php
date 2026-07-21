@@ -48,6 +48,7 @@
 
                                 </p>
 
+
                             </div>
 
                         @endforeach
@@ -97,6 +98,7 @@
                         Periode Penyewaan
                     </label>
 
+
                     <div class="relative">
 
                         <input id="periode" type="text" readonly placeholder="Pilih tanggal penyewaan"
@@ -129,6 +131,24 @@
                         </p>
                     @enderror
                 </div>
+
+                <div>
+
+                        <label class="block mb-2 text-sm font-medium">
+
+                            Alamat Acara
+
+                        </label>
+
+                        <textarea rows="5" name="alamat_acara" 
+                            class="w-full rounded-lg border px-3 py-2 @error('deskripsi') border-red-500 @else border-gray-300 @enderror">{{ old('alamat_acara') }}</textarea>
+
+                        @error('alamat_acara')
+                            <p class="mt-1 text-sm text-red-600">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
 
                 <div class="mt-5 rounded-xl border border-gray-200 bg-gray-50 p-4">
 
@@ -164,13 +184,19 @@
 
                     @if($isCart ?? false)
 
-                        <a href="{{ route('pelanggan.cart') }}">
+                        <a href="{{ route('pelanggan.cart') }}"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+
                             Kembali
                         </a>
 
                     @else
 
-                        <a href="{{ $routeKembali }}">
+                        <a href="{{ $routeKembali }}"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+
+
+
                             Kembali
                         </a>
 

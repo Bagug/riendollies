@@ -131,6 +131,8 @@
         <input type="hidden" name="jenis_layanan" value="dekorasi">
         <input type="hidden" name="id_layanan" value="{{ $dekorasi->id_dekorasi }}">
 
+        <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
+
         <button
             type="submit"
             class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">

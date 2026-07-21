@@ -109,7 +109,11 @@ class AuthController extends Controller
                 'login_pelanggan' => true,
             ]);
 
-            return redirect('/');
+            $redirect = session('redirect_after_login');
+
+            session()->forget('redirect_after_login');
+
+            return redirect($redirect ?? '/');
         }
 
         return back()->with('error', 'Username atau Password salah!');
@@ -122,75 +126,75 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-public function editProfile()
-{
-    if (!session('login_pelanggan')) {
-        return redirect('/login');
+    public function editProfile()
+    {
+        if (!session('login_pelanggan')) {
+            return redirect('/login');
+        }
+
+        $pelanggan = Pelanggan::findOrFail(session('id_pelanggan'));
+
+        return view('pelanggan.profile.edit', [
+            'title' => 'Profil Saya',
+            'pelanggan' => $pelanggan,
+        ]);
     }
-
-    $pelanggan = Pelanggan::findOrFail(session('id_pelanggan'));
-
-    return view('pelanggan.profile.edit', [
-        'title' => 'Profil Saya',
-        'pelanggan' => $pelanggan,
-    ]);
-}
     public function updateProfile(Request $request)
-{
-    $pelanggan = Pelanggan::findOrFail(session('id_pelanggan'));
+    {
+        $pelanggan = Pelanggan::findOrFail(session('id_pelanggan'));
 
-    $request->validate([
-        'nama' => 'required|max:255',
+        $request->validate([
+            'nama' => 'required|max:255',
 
-        'username' => 'required|max:50|unique:pelanggans,username,' .
-            $pelanggan->id_pelanggan . ',id_pelanggan',
+            'username' => 'required|max:50|unique:pelanggans,username,' .
+                $pelanggan->id_pelanggan . ',id_pelanggan',
 
-        'email' => 'required|email|unique:pelanggans,email,' .
-            $pelanggan->id_pelanggan . ',id_pelanggan',
+            'email' => 'required|email|unique:pelanggans,email,' .
+                $pelanggan->id_pelanggan . ',id_pelanggan',
 
-        'no_hp' => 'required',
+            'no_hp' => 'required',
 
-        'alamat' => 'required',
+            'alamat' => 'required',
 
-        'password' => 'nullable|min:8|confirmed',
-    ], [
+            'password' => 'nullable|min:8|confirmed',
+        ], [
 
-        'nama.required' => 'Nama wajib diisi.',
+            'nama.required' => 'Nama wajib diisi.',
 
-        'username.required' => 'Username wajib diisi.',
-        'username.unique' => 'Username sudah digunakan.',
+            'username.required' => 'Username wajib diisi.',
+            'username.unique' => 'Username sudah digunakan.',
 
-        'email.required' => 'Email wajib diisi.',
-        'email.email' => 'Format email tidak valid.',
-        'email.unique' => 'Email sudah digunakan.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
 
-        'no_hp.required' => 'Nomor HP wajib diisi.',
+            'no_hp.required' => 'Nomor HP wajib diisi.',
 
-        'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
 
-        'password.min' => 'Password minimal 8 karakter.',
-        'password.confirmed' => 'Konfirmasi password tidak cocok.',
-    ]);
+            'password.min' => 'Password minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);
 
-    $pelanggan->nama = $request->nama;
-    $pelanggan->username = $request->username;
-    $pelanggan->email = $request->email;
-    $pelanggan->no_hp = $request->no_hp;
-    $pelanggan->alamat = $request->alamat;
+        $pelanggan->nama = $request->nama;
+        $pelanggan->username = $request->username;
+        $pelanggan->email = $request->email;
+        $pelanggan->no_hp = $request->no_hp;
+        $pelanggan->alamat = $request->alamat;
 
-    if ($request->filled('password')) {
-        $pelanggan->password = Hash::make($request->password);
+        if ($request->filled('password')) {
+            $pelanggan->password = Hash::make($request->password);
+        }
+
+        $pelanggan->save();
+
+        session([
+            'nama' => $pelanggan->nama,
+            'username' => $pelanggan->username,
+        ]);
+
+        return redirect()
+            ->route('pelanggan.profil.edit')
+            ->with('success', 'Profil berhasil diperbarui.');
     }
-
-    $pelanggan->save();
-
-    session([
-        'nama' => $pelanggan->nama,
-        'username' => $pelanggan->username,
-    ]);
-
-    return redirect()
-        ->route('pelanggan.profil.edit')
-        ->with('success', 'Profil berhasil diperbarui.');
-}
 }

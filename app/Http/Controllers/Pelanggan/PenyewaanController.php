@@ -21,6 +21,14 @@ class PenyewaanController extends Controller
     public function create($jenis, $slug)
     {
         if (!session('login_pelanggan')) {
+
+            session([
+                'redirect_after_login' => route('pelanggan.penyewaan.create', [
+                    'jenis' => $jenis,
+                    'slug'  => $slug,
+                ])
+            ]);
+
             return redirect()->route('pelanggan.login');
         }
 
@@ -107,7 +115,17 @@ class PenyewaanController extends Controller
         $request->validate([
             'tanggal_acara'   => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_acara',
-        ]);
+            'alamat_acara' => 'required|string',
+        ],
+        [
+        'tanggal_acara.required'   => 'Silakan pilih tanggal acara.',
+        'tanggal_acara.after_or_equal' => 'Tanggal acara tidak boleh kurang dari hari ini.',
+
+        'tanggal_selesai.required' => 'Silakan pilih selesai acara.',
+        'tanggal_selesai.after_or_equal' => 'Tanggal selesai tidak boleh lebih awal dari tanggal acara.',
+
+        'alamat_acara.required'    => 'Alamat acara wajib diisi.',
+    ]);
 
         $isCart = $request->boolean('is_cart');
         $cart = session('cart', []);
@@ -183,6 +201,7 @@ class PenyewaanController extends Controller
             'tanggal_penyewaan' => now()->toDateString(),
             'tanggal_acara'     => $request->tanggal_acara,
             'tanggal_selesai'   => $request->tanggal_selesai,
+            'alamat_acara'      => $request->alamat_acara,
             'total_harga'       => $total,
             'status'            => 'Menunggu Pembayaran',
         ]);
@@ -229,8 +248,13 @@ class PenyewaanController extends Controller
     public function addCart(Request $request)
     {
         if (!session('login_pelanggan')) {
-            return redirect()->route('pelanggan.login');
-        }
+
+    session([
+    'redirect_after_login' => $request->redirect_url,
+]);
+
+    return redirect()->route('pelanggan.login');
+}
 
         $request->validate([
             'jenis_layanan' => 'required',

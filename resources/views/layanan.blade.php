@@ -11,7 +11,7 @@
 
             <div class="w-full px-4 mx-auto">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     <!-- CARD 1 -->
                     <div class="text-center bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col

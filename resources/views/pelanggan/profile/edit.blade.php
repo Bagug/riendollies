@@ -2,11 +2,31 @@
 
     <div class="max-w-4xl mx-auto py-10">
 
-        <h1 class="text-3xl font-bold mb-6 text-center">
-            Profil Saya
-        </h1>
+        <div class="relative flex items-center mb-8">
 
-        <form action="{{ route('pelanggan.profil.update') }}" method="POST" class="bg-white rounded-xl shadow p-8 space-y-5">
+            <!-- Tombol Kembali -->
+            <a href="/"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+
+                Kembali
+            </a>
+
+
+            <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
+                Edit Profil
+            </h1>
+
+        </div>
+
+        <form action="{{ route('pelanggan.profil.update') }}" method="POST"
+            class="bg-white rounded-xl shadow p-8 space-y-5">
 
             @csrf
             @method('PUT')
@@ -123,18 +143,15 @@
 
             <div class="flex justify-end gap-3 mt-6">
 
-    <a href="{{ route('home') }}"
-        class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100">
-        Batal
-    </a>
+                <a href="{{ route('home') }}" class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100">
+                    Batal
+                </a>
 
-    <button
-        type="submit"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
-        Simpan Perubahan
-    </button>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+                    Simpan Perubahan
+                </button>
 
-</div>
+            </div>
 
         </form>
 

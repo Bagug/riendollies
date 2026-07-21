@@ -73,7 +73,7 @@
                     </p>
                 </div>
 
-                
+
                 <div>
                     <p class="text-gray-500">Total Pembayaran</p>
                     <p class="font-bold text-xl">
@@ -101,7 +101,8 @@
                     <tr>
                         <th class="p-3 text-left">Layanan</th>
                         <th class="p-3 text-center">Qty</th>
-                        <th class="p-3 text-right">Harga</th>
+                        <th class="p-3 text-center">Alamat Acara</th>
+                        <th class="p-3 text-center">Harga</th>
                         <th class="p-3 text-right">Subtotal</th>
                     </tr>
                 </thead>
@@ -120,7 +121,11 @@
                                 {{ $detail->qty }}
                             </td>
 
-                            <td class="p-3 text-right">
+                            <td class="p-3 text-center">
+                                {{ $penyewaan->alamat_acara }}
+                            </td>
+
+                            <td class="p-3 text-center">
                                 Rp {{ number_format($detail->harga, 0, ',', '.') }}
                             </td>
 
@@ -193,13 +198,17 @@
                                     Format yang didukung: JPG, JPEG, PNG (maksimal 2 MB).
                                 </p>
 
+                                @error('bukti_pembayaran')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+
                             </div>
 
                         </div>
 
                         <div class="flex justify-end gap-3 mt-8">
 
-                            
+
 
                             <button type="submit" class="px-5 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700">
 
