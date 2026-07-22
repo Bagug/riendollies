@@ -4,13 +4,14 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DekorasiController as AdminDekorasiController;
 use App\Http\Controllers\Admin\HiburanController;
+use App\Http\Controllers\Admin\LaporanPenyewaanController;
 use App\Http\Controllers\Admin\MakeupController;
 use App\Http\Controllers\Admin\PakaianController;
 use App\Http\Controllers\Admin\PaketPernikahanController;
+use App\Http\Controllers\Admin\PenyewaanController as AdminPenyewaanController;
 use App\Http\Controllers\Admin\PerawatanController;
 use App\Http\Controllers\Admin\PhotographerController;
 use App\Http\Controllers\Admin\WeddingOrganizerController;
-use App\Http\Controllers\Admin\PenyewaanController as AdminPenyewaanController;
 use App\Http\Controllers\Pelanggan\AuthController as PelangganAuthController;
 use App\Http\Controllers\Pelanggan\DekorasiController as PelangganDekorasiController;
 use App\Http\Controllers\Pelanggan\PembayaranController;
@@ -179,6 +180,17 @@ Route::prefix('admin')
             'penyewaan/{penyewaan}/selesai',
             [AdminPenyewaanController::class, 'selesai']
         )->name('penyewaan.selesai');
+
+        //laporan penyewaan
+        Route::get(
+            'laporan-penyewaan',
+            [LaporanPenyewaanController::class, 'index']
+        )->name('laporan.penyewaan');
+
+        Route::get(
+            'laporan-penyewaan/pdf',
+            [LaporanPenyewaanController::class, 'print']
+        )->name('laporan.penyewaan.pdf');
     });
 
 //pelanggan
