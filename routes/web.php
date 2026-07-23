@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DekorasiController as AdminDekorasiController;
 use App\Http\Controllers\Admin\HiburanController;
+use App\Http\Controllers\Admin\LaporanPembayaranController;
 use App\Http\Controllers\Admin\LaporanPenyewaanController;
 use App\Http\Controllers\Admin\MakeupController;
 use App\Http\Controllers\Admin\PakaianController;
@@ -191,6 +192,13 @@ Route::prefix('admin')
             'laporan-penyewaan/pdf',
             [LaporanPenyewaanController::class, 'print']
         )->name('laporan.penyewaan.pdf');
+
+        //laporan pembayaran
+        Route::get('laporan-pembayaran', [LaporanPembayaranController::class, 'index'])
+            ->name('laporan.pembayaran');
+
+        Route::get('laporan-pembayaran/pdf', [LaporanPembayaranController::class, 'pdf'])
+            ->name('laporan.pembayaran.pdf');
     });
 
 //pelanggan

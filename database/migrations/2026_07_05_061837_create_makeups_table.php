@@ -23,13 +23,13 @@ return new class extends Migration
         ->cascadeOnUpdate()
         ->restrictOnDelete();
 
-    $table->string('kode_makeup',10)->unique();
+    $table->string('kode_makeup',25)->unique();
 
     $table->string('nama_makeup')
       ->collation('nocase')
       ->unique();
 
-    $table->string('slug',100)->unique();
+    $table->string('slug')->unique();
 
     $table->decimal('harga',12,2);
 

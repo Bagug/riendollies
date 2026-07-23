@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CategorySeeder::class,
             DekorasiSeeder::class,
+            DekorasiImageSeeder::class,
             WeddingOrganizerSeeder::class,
             MakeupSeeder::class,
             PakaianSeeder::class,

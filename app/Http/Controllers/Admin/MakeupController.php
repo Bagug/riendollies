@@ -76,7 +76,7 @@ class MakeupController extends Controller
 
     $last = Makeup::latest('id_makeup')->first();
 
-    $kode = 'DKR' . str_pad(($last?->id_makeup ?? 0) + 1, 3, '0', STR_PAD_LEFT);
+    $kode = 'MKP' . str_pad(($last?->id_makeup ?? 0) + 1, 3, '0', STR_PAD_LEFT);
     
     $makeup = Makeup::create([
 

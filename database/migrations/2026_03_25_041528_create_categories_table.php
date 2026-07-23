@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id('id_kategori');
-            $table->string('kode_kategori', 10)->unique();
+            $table->string('kode_kategori', 25)->unique();
             $table->string('nama_kategori')
                 ->collation('nocase')
                 ->unique();
             $table->string('slug')->unique();
-            $table->string('color');
+            $table->string('color', 20);
             $table->timestamps();
         });
     }

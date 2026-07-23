@@ -19,7 +19,7 @@ return new class extends Migration
         ->constrained('pelanggans', 'id_pelanggan')
         ->cascadeOnDelete();
 
-    $table->string('kode_penyewaan')->unique();
+    $table->string('kode_penyewaan', 25)->unique();
 
     $table->date('tanggal_penyewaan');
 

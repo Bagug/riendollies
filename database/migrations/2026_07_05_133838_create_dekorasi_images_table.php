@@ -21,7 +21,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->string('image',150);
+            $table->string('image');
 
             $table->timestamps();
 
