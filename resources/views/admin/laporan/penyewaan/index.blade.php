@@ -223,7 +223,5 @@
         {{ $penyewaans->links() }}
     </div>
 
-    {{-- Pagination --}}
-    ...
 
 </x-admin-layout>

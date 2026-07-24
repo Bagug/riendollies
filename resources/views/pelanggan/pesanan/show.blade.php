@@ -2,7 +2,7 @@
 
     <div class="max-w-5xl mx-auto px-4 py-10">
 
-        <div class="mb-6">
+        <div class="relative flex items-center mb-8">
             <a href="{{ route('pelanggan.pesanan') }}"
                 class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
 
@@ -16,11 +16,14 @@
                 Kembali
 
             </a>
-        </div>
 
-        <h1 class="text-3xl font-bold mb-8 text-center">
+             <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
             Detail Pesanan
         </h1>
+
+        </div>
+
+        
 
         @if(session('success'))
 

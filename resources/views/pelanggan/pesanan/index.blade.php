@@ -2,7 +2,7 @@
 
     <div class="max-w-7xl mx-auto px-4 py-10">
 
-        <h1 class="text-3xl font-bold mb-8">
+        <h1 class="text-3xl font-bold mb-8 text-center">
             Pesanan Saya
         </h1>
 
@@ -70,7 +70,7 @@
 
                             <tr class="border-t">
 
-                                <td class="px-5 py-4 text-center">
+                                <td class="px-5 py-4 text-center whitespace-nowrap">
                                     {{ $penyewaan->kode_penyewaan }}
                                 </td>
 
@@ -96,7 +96,7 @@
                                     Rp {{ number_format($penyewaan->total_harga, 0, ',', '.') }}
                                 </td>
 
-                                <td class="px-5 py-4 text-center">
+                                <td class="px-5 py-4 text-center whitespace-nowrap">
 
                                     @php
                                         $statusClass = match ($penyewaan->status) {

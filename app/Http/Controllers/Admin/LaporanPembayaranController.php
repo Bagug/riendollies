@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class LaporanPembayaranController extends Controller
 {
@@ -42,11 +43,12 @@ class LaporanPembayaranController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        if ($start_date && $end_date) {
-            $query->whereBetween(
-                'tanggal_pembayaran',
-                [$start_date, $end_date]
-            );
+        if ($start_date) {
+            $query->whereDate('tanggal_pembayaran', '>=', $start_date);
+        }
+
+        if ($end_date) {
+            $query->whereDate('tanggal_pembayaran', '<=', $end_date);
         }
 
         /*
@@ -57,7 +59,7 @@ class LaporanPembayaranController extends Controller
 
         $pembayarans = (clone $query)
             ->latest('tanggal_pembayaran')
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         /*
@@ -114,6 +116,7 @@ class LaporanPembayaranController extends Controller
 
     public function pdf(Request $request)
     {
+        Carbon::setLocale('id');
         $query = Pembayaran::with([
             'penyewaan.pelanggan'
         ]);
@@ -131,18 +134,21 @@ class LaporanPembayaranController extends Controller
             });
         }
 
-        // Filter tanggal
-        if ($request->start_date && $request->end_date) {
 
-            $query->whereBetween(
-                'tanggal_pembayaran',
-                [$request->start_date, $request->end_date]
-            );
+        // Filter tanggal
+        if ($request->filled('start_date')) {
+            $query->whereDate('tanggal_pembayaran', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('tanggal_pembayaran', '<=', $request->end_date);
         }
 
         $pembayarans = $query
             ->latest('tanggal_pembayaran')
             ->get();
+
+
 
         $totalPendapatan = $pembayarans
             ->where('status_verifikasi', 'Disetujui')
@@ -161,6 +167,17 @@ class LaporanPembayaranController extends Controller
             ]
         )->setPaper('a4', 'landscape');
 
-        return $pdf->stream('laporan.pembayaran.pdf');
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+
+            $start = Carbon::parse($request->start_date)->format('d-m-Y');
+            $end   = Carbon::parse($request->end_date)->format('d-m-Y');
+
+            $namaFile = "lap_pembayaran_{$start}_sd_{$end}.pdf";
+        } else {
+
+            $namaFile = "lap_pembayaran_semua_periode.pdf";
+        }
+
+        return $pdf->stream($namaFile);
     }
 }

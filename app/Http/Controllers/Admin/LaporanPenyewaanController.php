@@ -44,7 +44,7 @@ class LaporanPenyewaanController extends Controller
 
         $penyewaans = $query
             ->latest()
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         // Statistik mengikuti hasil filter
@@ -95,7 +95,7 @@ class LaporanPenyewaanController extends Controller
         }
 
         $penyewaans = $query
-            ->orderBy('tanggal_acara', 'desc')
+            ->latest('tanggal_acara')
             ->get();
 
         $totalPendapatan = $penyewaans->sum('total_harga');

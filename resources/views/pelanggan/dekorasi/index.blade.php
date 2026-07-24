@@ -22,7 +22,7 @@
 
 
             <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
-                Keranjang Saya
+                Dekorasi
             </h1>
 
         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DekorasiController as AdminDekorasiController;
 use App\Http\Controllers\Admin\HiburanController;
 use App\Http\Controllers\Admin\LaporanPembayaranController;
@@ -76,11 +77,8 @@ Route::get('/contact', function () {
     ]);
 });
 
-Route::get('/admin', function () {
-    return view('admin.dashboard', [
-        'title' => 'Dashboard'
-    ]);
-})->name('admin.dashboard');
+Route::get('/admin', [DashboardController::class, 'index'])
+    ->name('admin.dashboard');
 
 
 Route::get('/layanan', function () {
