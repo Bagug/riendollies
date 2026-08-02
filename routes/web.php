@@ -10,12 +10,20 @@ use App\Http\Controllers\Admin\LaporanPenyewaanController;
 use App\Http\Controllers\Admin\MakeupController;
 use App\Http\Controllers\Admin\PakaianController;
 use App\Http\Controllers\Admin\PaketPernikahanController;
+use App\Http\Controllers\Admin\PelangganController;
 use App\Http\Controllers\Admin\PenyewaanController as AdminPenyewaanController;
 use App\Http\Controllers\Admin\PerawatanController;
 use App\Http\Controllers\Admin\PhotographerController;
 use App\Http\Controllers\Admin\WeddingOrganizerController;
 use App\Http\Controllers\Pelanggan\AuthController as PelangganAuthController;
 use App\Http\Controllers\Pelanggan\DekorasiController as PelangganDekorasiController;
+use App\Http\Controllers\Pelanggan\MakeupController as PelangganMakeupController;
+use App\Http\Controllers\Pelanggan\HiburanController as PelangganHiburanController;
+use App\Http\Controllers\Pelanggan\PerawatanController as PelangganPerawatanController;
+use App\Http\Controllers\Pelanggan\PhotographerController as PelangganPhotographerController;
+use App\Http\Controllers\Pelanggan\PaketPernikahanController as PelangganPaketPernikahanController;
+use App\Http\Controllers\Pelanggan\WeddingOrganizerController as PelangganWeddingOrganizerController;
+use App\Http\Controllers\Pelanggan\PakaianController as PelangganPakaianController;
 use App\Http\Controllers\Pelanggan\PembayaranController;
 use App\Http\Controllers\Pelanggan\PenyewaanController as PelangganPenyewaanController;
 use App\Http\Controllers\Pelanggan\PesananController;
@@ -38,18 +46,7 @@ Route::get('/about', function () {
     ]);
 });
 
-// Route::get('/posts', function () {
 
-//     return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->get()]);
-// });
-
-// route::get('/posts/{post:slug}', function (post $post) {
-
-//     return view('post', [
-//         'title' => 'Single Post',
-//         'post' => $post
-//     ]);
-// });
 
 route::get('/authors/{user:username}', function (User $user) {
     // $posts = $user->posts->load('category', 'author');
@@ -87,8 +84,11 @@ Route::get('/layanan', function () {
     ]);
 });
 
+Route::resource('/admin/pelanggan', PelangganController::class)
+    ->only(['index', 'destroy']);
 
-//admin
+
+
 
 //admin
 
@@ -242,6 +242,55 @@ Route::name('pelanggan.')->group(function () {
 
     Route::get('/dekorasi/{slug}', [PelangganDekorasiController::class, 'show'])
         ->name('dekorasi.show');
+
+    // Makeup
+    Route::get('/makeup', [PelangganMakeupController::class, 'index'])
+        ->name('makeup.index');
+
+    Route::get('/makeup/{slug}', [PelangganMakeupController::class, 'show'])
+        ->name('makeup.show');
+
+    // Hiburan
+    Route::get('/hiburan', [PelangganHiburanController::class, 'index'])
+        ->name('hiburan.index');
+
+    Route::get('/hiburan/{slug}', [PelangganHiburanController::class, 'show'])
+        ->name('hiburan.show');
+
+    // Perawatan
+    Route::get('/perawatan', [PelangganPerawatanController::class, 'index'])
+        ->name('perawatan.index');
+
+    Route::get('/perawatan/{slug}', [PelangganPerawatanController::class, 'show'])
+        ->name('perawatan.show');
+
+    // Photographer
+    Route::get('/photographer', [PelangganPhotographerController::class, 'index'])
+        ->name('photographer.index');
+
+    Route::get('/photographer/{slug}', [PelangganPhotographerController::class, 'show'])
+        ->name('photographer.show');
+
+    // Paket Pernikahan
+    Route::get('/paket-pernikahan', [PelangganPaketPernikahanController::class, 'index'])
+        ->name('paket-pernikahan.index');
+
+    Route::get('/paket-pernikahan/{slug}', [PelangganPaketPernikahanController::class, 'show'])
+        ->name('paket-pernikahan.show');
+
+    //wedding organizer
+    Route::get('/wedding-organizer', [PelangganWeddingOrganizerController::class, 'index'])
+        ->name('wedding-organizer.index');
+
+    Route::get('/wedding-organizer/{slug}', [PelangganWeddingOrganizerController::class, 'show'])
+        ->name('wedding-organizer.show');
+
+    //Pakaian
+    Route::get('/pakaian', [PelangganPakaianController::class, 'index'])
+        ->name('pakaian.index');
+
+    Route::get('/pakaian/{slug}', [PelangganPakaianController::class, 'show'])
+        ->name('pakaian.show');
 
     //detail penyewaan
     Route::get('/pesanan/{id}', [PesananController::class, 'show'])

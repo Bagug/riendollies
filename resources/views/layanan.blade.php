@@ -18,8 +18,10 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/dekorasi.jpeg" alt="Dekorasi">
-
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/dekorasi.jpeg" alt="Dekorasi"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Dekorasi</a>
                         </h3>
@@ -45,7 +47,11 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/rias.png" alt="Makeup">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/rias.png" alt="Makeup"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Makeup</a>
@@ -57,7 +63,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.makeup.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -70,7 +76,11 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/baju pengantin.jpg" alt="Pakaian">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/baju pengantin.jpg" alt="Pakaian"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Pakaian</a>
@@ -82,7 +92,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.pakaian.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -95,7 +105,10 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/paket.jpg" alt="Paket Pernikahan">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/paket.jpg" alt="Paket Pernikahan"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Paket Pernikahan</a>
@@ -107,7 +120,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.paket-pernikahan.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -128,7 +141,10 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/wo.jpg" alt="Dekorasi">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/wo.jpg" alt="Dekorasi"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Wedding Organizer</a>
@@ -139,7 +155,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.wedding-organizer.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -152,7 +168,10 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/sax.jpg" alt="Makeup">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/sax.jpg" alt="Makeup"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Hiburan</a>
@@ -163,7 +182,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.hiburan.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -176,10 +195,13 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/perawatan.jpg" alt="Pakaian">
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/perawatan.jpg" alt="Perawatan"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
 
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Treatment</a>
+                            <a href="#">Perawatan</a>
                         </h3>
 
                         <p class="text-xs mb-4 leading-snug text-gray-500 dark:text-gray-400">
@@ -187,7 +209,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.perawatan.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>
@@ -200,8 +222,10 @@
                     transition-all duration-300 ease-in-out
                     hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/30">
 
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="/images/fg.jpg" alt="Paket Pernikahan">
-
+                        <div class="mx-auto mb-4 w-36 h-36 rounded-full overflow-hidden shadow-lg">
+                            <img src="/images/fg.jpg" alt="Photographer"
+                                class="w-full h-full object-cover object-center transition duration-300 hover:scale-110">
+                        </div>
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Photographer</a>
                         </h3>
@@ -211,7 +235,7 @@
                         </p>
 
                         <div class="mt-auto flex justify-center">
-                            <a href="#"
+                            <a href="{{ route('pelanggan.photographer.index') }}"
                                 class="rounded-md bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">
                                 Lihat
                             </a>

@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-slot:title> Dekorasi </x-slot:title>
+    <x-slot:title> Perawatan </x-slot:title>
 
     <div class="max-w-7xl mx-auto py-10">
 
@@ -22,7 +22,7 @@
 
 
             <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
-                Dekorasi
+                Perawatan
             </h1>
 
         </div>
@@ -31,15 +31,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            @foreach($dekorasis as $dekorasi)
+            @foreach($perawatans as $perawatan)
 
 
                 <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
 
                     {{-- Gambar --}}
-                    @if($dekorasi->images->isNotEmpty())
-                        <img src="{{ asset('storage/' . $dekorasi->images->first()->image) }}"
-                            alt="{{ $dekorasi->nama_dekorasi }}" class="w-full h-56 object-cover">
+                    @if($perawatan->images->isNotEmpty())
+                        <img src="{{ asset('storage/' . $perawatan->images->first()->image) }}"
+                            alt="{{ $perawatan->nama_perawatan }}" class="w-full h-56 object-cover">
 
                     @else
                         <img src="{{ asset('images/no-image.png') }}" class="w-full h-56 object-cover">
@@ -49,21 +49,21 @@
 
                         {{-- Nama --}}
                         <h2 class="text-xl font-bold text-gray-800 text-center">
-                            {{ $dekorasi->nama_dekorasi }}
+                            {{ $perawatan->nama_perawatan }}
                         </h2>
 
                         {{-- Deskripsi --}}
                         <p class="mt-2 text-gray-500 text-sm leading-relaxed text-center h-12">
-                            {{ Str::limit($dekorasi->deskripsi, 80) }}
+                            {{ Str::limit($perawatan->deskripsi, 80) }}
                         </p>
 
                         {{-- Harga --}}
                         <p class="mt-4 text-2xl font-bold text-green-600 text-center">
-                            Rp {{ number_format($dekorasi->harga, 0, ',', '.') }}
+                            Rp {{ number_format($perawatan->harga, 0, ',', '.') }}
                         </p>
 
                         {{-- Tombol --}}
-                        <a href="{{ route('pelanggan.dekorasi.show', $dekorasi->slug) }}"
+                        <a href="{{ route('pelanggan.perawatan.show', $perawatan->slug) }}"
                             class="mt-5 inline-block w-full rounded-lg bg-blue-600 py-2 text-center font-semibold text-white hover:bg-blue-700 transition">
 
                             Lihat Detail

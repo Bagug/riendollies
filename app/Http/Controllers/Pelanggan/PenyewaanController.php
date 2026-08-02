@@ -87,13 +87,13 @@ class PenyewaanController extends Controller
 
         $routeKembali = match ($jenis) {
             'dekorasi'     => route('pelanggan.dekorasi.show', $layanan->slug),
-            'wo'           => route('pelanggan.wo.show', $layanan->slug),
+            'wo'           => route('pelanggan.wedding-organizer.show', $layanan->slug),
             'makeup'       => route('pelanggan.makeup.show', $layanan->slug),
             'pakaian'      => route('pelanggan.pakaian.show', $layanan->slug),
             'perawatan'    => route('pelanggan.perawatan.show', $layanan->slug),
             'hiburan'      => route('pelanggan.hiburan.show', $layanan->slug),
             'photographer' => route('pelanggan.photographer.show', $layanan->slug),
-            'paket'        => route('pelanggan.paket.show', $layanan->slug),
+            'paket'        => route('pelanggan.paket-pernikahan.show', $layanan->slug),
         };
 
         return view('pelanggan.penyewaan.create', compact(
