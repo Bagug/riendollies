@@ -177,20 +177,6 @@
 
                         </div>
 
-                        @error('images')
-                            <p class="mt-2 text-sm text-red-600">
-                                {{ $message }}
-                            </p>
-                        @enderror
-
-                        @foreach ($errors->get('images.*') as $messages)
-                            @foreach ($messages as $message)
-                                <p class="mt-2 text-sm text-red-600">
-                                    {{ $message }}
-                                </p>
-                            @endforeach
-                        @endforeach
-
                         {{-- Foto Lama --}}
                         <div class="flex flex-wrap gap-3 mb-4">
 
@@ -217,6 +203,20 @@
                         </p>
 
                         <div id="preview" class="grid grid-cols-4 gap-4 mt-4"></div>
+                         @error('images')
+                            <p class="mt-2 text-sm text-red-600">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                        @foreach ($errors->get('images.*') as $messages)
+                            @foreach ($messages as $message)
+                                <p class="mt-2 text-sm text-red-600">
+                                    {{ $message }}
+                                </p>
+                            @endforeach
+                        @endforeach
+
 
                     </div>
 

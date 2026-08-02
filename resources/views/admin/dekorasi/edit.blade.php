@@ -178,9 +178,6 @@
 
                         </div>
 
-                        @error('images')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
 
                         {{-- Foto Lama --}}
                         <div class="flex flex-wrap gap-3 mb-4">

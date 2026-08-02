@@ -112,39 +112,55 @@
 
                 <div class="mt-10">
 
-    <div class="mt-10 flex gap-3">
+                    <div class="mt-10 flex gap-3">
 
-    {{-- Sewa Sekarang --}}
-    <a href="{{ route('pelanggan.penyewaan.create', [
-        'jenis' => 'dekorasi',
-        'slug' => $dekorasi->slug
-    ]) }}"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+                        @if($dekorasi->status_ketersediaan == 'Tersedia')
 
-        Sewa Sekarang
-    </a>
+                                                {{-- Sewa Sekarang --}}
+                                                <a href="{{ route('pelanggan.penyewaan.create', [
+                                'jenis' => 'dekorasi',
+                                'slug' => $dekorasi->slug
+                            ]) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
 
-    {{-- Tambah ke Keranjang --}}
-    <form action="{{ route('pelanggan.cart.add') }}" method="POST">
-        @csrf
+                                                    Sewa Sekarang
+                                                </a>
 
-        <input type="hidden" name="jenis_layanan" value="dekorasi">
-        <input type="hidden" name="id_layanan" value="{{ $dekorasi->id_dekorasi }}">
+                                                {{-- Tambah ke Keranjang --}}
+                                                <form action="{{ route('pelanggan.cart.add') }}" method="POST">
+                                                    @csrf
 
-        <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
+                                                    <input type="hidden" name="jenis_layanan" value="dekorasi">
+                                                    <input type="hidden" name="id_layanan" value="{{ $dekorasi->id_dekorasi }}">
+                                                    <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
 
-        <button
-            type="submit"
-            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
+                                                    <button type="submit"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
 
-            + Keranjang
+                                                        + Keranjang
 
-        </button>
-    </form>
+                                                    </button>
 
-</div>
+                                                </form>
 
-</div>
+                        @else
+
+                            <button disabled class="bg-gray-400 text-white px-6 py-3 rounded-lg cursor-not-allowed">
+
+                                Tidak Tersedia
+
+                            </button>
+
+                            <button disabled class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg cursor-not-allowed">
+
+                                + Keranjang
+
+                            </button>
+
+                        @endif
+
+                    </div>
+
+                </div>
 
             </div>
 

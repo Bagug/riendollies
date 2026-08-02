@@ -124,31 +124,49 @@
 
                     <div class="mt-10 flex gap-3">
 
-                        {{-- Sewa Sekarang --}}
-                        <a href="{{ route('pelanggan.penyewaan.create', [
-    'jenis' => 'pakaian',
-    'slug' => $pakaian->slug
-]) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+                        @if($pakaian->status_ketersediaan == 'Tersedia')
 
-                            Sewa Sekarang
-                        </a>
+                                                {{-- Sewa Sekarang --}}
+                                                <a href="{{ route('pelanggan.penyewaan.create', [
+                                'jenis' => 'pakaian',
+                                'slug' => $pakaian->slug
+                            ]) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
 
-                        {{-- Tambah ke Keranjang --}}
-                        <form action="{{ route('pelanggan.cart.add') }}" method="POST">
-                            @csrf
+                                                    Sewa Sekarang
+                                                </a>
 
-                            <input type="hidden" name="jenis_layanan" value="pakaian">
-                            <input type="hidden" name="id_layanan" value="{{ $pakaian->id_pakaian }}">
+                                                {{-- Tambah ke Keranjang --}}
+                                                <form action="{{ route('pelanggan.cart.add') }}" method="POST">
+                                                    @csrf
 
-                            <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
+                                                    <input type="hidden" name="jenis_layanan" value="pakaian">
+                                                    <input type="hidden" name="id_layanan" value="{{ $pakaian->id_pakaian }}">
+                                                    <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
 
-                            <button type="submit"
-                                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
+                                                    <button type="submit"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
+
+                                                        + Keranjang
+
+                                                    </button>
+
+                                                </form>
+
+                        @else
+
+                            <button disabled class="bg-gray-400 text-white px-6 py-3 rounded-lg cursor-not-allowed">
+
+                                Tidak Tersedia
+
+                            </button>
+
+                            <button disabled class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg cursor-not-allowed">
 
                                 + Keranjang
 
                             </button>
-                        </form>
+
+                        @endif
 
                     </div>
 

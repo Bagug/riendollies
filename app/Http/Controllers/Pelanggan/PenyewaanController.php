@@ -53,6 +53,13 @@ class PenyewaanController extends Controller
             default => abort(404),
         };
 
+        if ($layanan->status_ketersediaan !== 'Tersedia') {
+            return back()->with(
+                'error',
+                'Layanan sedang tidak tersedia.'
+            );
+        }
+
         $namaLayanan = match ($jenis) {
             'dekorasi'     => $layanan->nama_dekorasi,
             'wo'           => $layanan->nama_wo,
@@ -112,20 +119,22 @@ class PenyewaanController extends Controller
             return redirect()->route('pelanggan.login');
         }
 
-        $request->validate([
-            'tanggal_acara'   => 'required|date|after_or_equal:today',
-            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_acara',
-            'alamat_acara' => 'required|string',
-        ],
-        [
-        'tanggal_acara.required'   => 'Silakan pilih tanggal acara.',
-        'tanggal_acara.after_or_equal' => 'Tanggal acara tidak boleh kurang dari hari ini.',
+        $request->validate(
+            [
+                'tanggal_acara'   => 'required|date|after_or_equal:today',
+                'tanggal_selesai' => 'required|date|after_or_equal:tanggal_acara',
+                'alamat_acara' => 'required|string',
+            ],
+            [
+                'tanggal_acara.required'   => 'Silakan pilih tanggal acara.',
+                'tanggal_acara.after_or_equal' => 'Tanggal acara tidak boleh kurang dari hari ini.',
 
-        'tanggal_selesai.required' => 'Silakan pilih selesai acara.',
-        'tanggal_selesai.after_or_equal' => 'Tanggal selesai tidak boleh lebih awal dari tanggal acara.',
+                'tanggal_selesai.required' => 'Silakan pilih selesai acara.',
+                'tanggal_selesai.after_or_equal' => 'Tanggal selesai tidak boleh lebih awal dari tanggal acara.',
 
-        'alamat_acara.required'    => 'Alamat acara wajib diisi.',
-    ]);
+                'alamat_acara.required'    => 'Alamat acara wajib diisi.',
+            ]
+        );
 
         $isCart = $request->boolean('is_cart');
         $cart = session('cart', []);
@@ -249,12 +258,12 @@ class PenyewaanController extends Controller
     {
         if (!session('login_pelanggan')) {
 
-    session([
-    'redirect_after_login' => $request->redirect_url,
-]);
+            session([
+                'redirect_after_login' => $request->redirect_url,
+            ]);
 
-    return redirect()->route('pelanggan.login');
-}
+            return redirect()->route('pelanggan.login');
+        }
 
         $request->validate([
             'jenis_layanan' => 'required',
@@ -265,6 +274,13 @@ class PenyewaanController extends Controller
             $request->jenis_layanan,
             $request->id_layanan
         );
+
+        if ($layanan->status_ketersediaan !== 'Tersedia') {
+            return back()->with(
+                'error',
+                'Layanan sedang tidak tersedia.'
+            );
+        }
 
         $namaLayanan = $this->getNamaLayanan(
             $request->jenis_layanan,

@@ -179,7 +179,6 @@
 
                         </div>
 
-                       
 
                         {{-- Foto Lama --}}
                         <div class="flex flex-wrap gap-3 mb-4">
