@@ -4,28 +4,21 @@
 
     <div class="max-w-7xl mx-auto py-10">
 
-        <div class="relative flex items-center mb-8">
+        <div class="relative flex items-center justify-center px-4 py-6">
 
-            <!-- Tombol Kembali -->
-            <a href="/layanan"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+    {{-- Tombol kembali --}}
+    <a href="/layanan"
+       class="absolute left-4 flex items-center gap-1 text-gray-700 hover:text-gray-900">
+        <span class="text-2xl">‹</span>
+        <span class="text-base">Kembali</span>
+    </a>
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+    {{-- Judul --}}
+    <h1 class="max-w-[220px] text-center text-3xl font-bold leading-tight text-gray-900 md:max-w-none md:text-4xl">
+        Wedding Organizer
+    </h1>
 
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-
-                Kembali
-            </a>
-
-
-            <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
-                Wedding Organizer
-            </h1>
-
-        </div>
+</div>
 
 
 

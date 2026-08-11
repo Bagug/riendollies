@@ -45,26 +45,26 @@
                         </svg>
 
                         @if($cartCount > 0)
-                                <span class="
-                            absolute
-                            -top-1
-                            -right-1
-                            bg-red-500
-                            text-white
-                            text-[9px]
-                            font-bold
-                            rounded-full
-                            min-w-4
-                            h-4
-                            flex
-                            items-center
-                            justify-center
-                            px-1
-                            ">
+                            <span class="
+                                    absolute
+                                    -top-1
+                                    -right-1
+                                    bg-red-500
+                                    text-white
+                                    text-[9px]
+                                    font-bold
+                                    rounded-full
+                                    min-w-4
+                                    h-4
+                                    flex
+                                    items-center
+                                    justify-center
+                                    px-1
+                                    ">
 
-                                    {{ $cartCount }}
+                                {{ $cartCount }}
 
-                                </span>
+                            </span>
                         @endif
 
                     </a>
@@ -158,91 +158,161 @@
                 </div>
             </div>
 
-            <div class="-mr-2 flex md:hidden">
-                <!-- Mobile menu button -->
-                <button type="button" @click="mobileOpen = !mobileOpen" class="relative inline-flex items-center justify-center rounded-md 
-           bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white 
-           focus:outline focus:ring-2 focus:ring-white focus:ring-offset-2
-           focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="absolute -inset-0.5"></span>
+            <div class="-mr-2 flex items-center gap-2 md:hidden">
+
+                {{-- Keranjang Mobile --}}
+                <a href="{{ route('pelanggan.cart') }}"
+                    class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-white hover:bg-gray-700">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                        stroke="currentColor" class="h-6 w-6">
+
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 3h1.386a.75.75 0 01.728.568l.894 3.577m0 0L6.75 15h10.878a.75.75 0 00.728-.568l1.35-5.4a.75.75 0 00-.728-.932H5.258zM6.75 18.75a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm10.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                    </svg>
+
+                    @if($cartCount > 0)
+                        <span
+                            class="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold text-white">
+                            {{ $cartCount }}
+                        </span>
+                    @endif
+
+                </a>
+
+
+                {{-- Hamburger --}}
+                <button type="button" @click="mobileOpen = !mobileOpen"
+                    class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none"
+                    aria-controls="mobile-menu">
+
                     <span class="sr-only">Open main menu</span>
-                    <svg :class="{ 'block': !mobileOpen, 'hidden': mobileOpen }" class="h-6 
-            w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+
+                    <svg :class="{ 'block': !mobileOpen, 'hidden': mobileOpen }" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
 
-                    <svg :class="{ 'hidden': !mobileOpen, 'block': mobileOpen }" class="h-6 
-            w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <svg :class="{ 'hidden': !mobileOpen, 'block': mobileOpen }" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
+
                 </button>
+
             </div>
         </div>
     </div>
 
-    <div x-show="mobileOpen" class="md:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-            <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-            <x-nav-link href="/about" :active="request()->is('about')">Tentang Kami</x-nav-link>
-            <x-nav-link href="/layanan" :active="request()->is('layanan')">Layanan Kami</x-nav-link>
-            @if(session('login_pelanggan'))
-                <x-nav-link href="/pesanan" :active="request()->is('pesanan')">
-                    Pesanan Saya
-                </x-nav-link>
-            @endif
-        </div>
-        <div class="border-t border-white/10 pb-3 pt-4">
+    {{-- Mobile menu --}}
+    <div x-show="mobileOpen" x-transition class="border-t border-gray-200 bg-gray-100 md:hidden" id="mobile-menu">
+
+        {{-- Menu utama --}}
+
+       <div class="space-y-1 px-4 pb-3 pt-3">
+
+    {{-- Beranda --}}
+    <a href="/"
+       class="block w-full rounded-md px-3 py-2 text-base font-medium
+       {{ request()->is('/')
+            ? 'bg-gray-900 text-white'
+            : 'text-gray-700 hover:bg-white' }}">
+        Beranda
+    </a>
+
+    {{-- Tentang Kami --}}
+    <a href="/about"
+       class="block w-full rounded-md px-3 py-2 text-base font-medium
+       {{ request()->is('about')
+            ? 'bg-gray-900 text-white'
+            : 'text-gray-700 hover:bg-white' }}">
+        Tentang Kami
+    </a>
+
+    {{-- Layanan Kami --}}
+    <a href="/layanan"
+       class="block w-full rounded-md px-3 py-2 text-base font-medium
+       {{ request()->is('layanan')
+            ? 'bg-gray-900 text-white'
+            : 'text-gray-700 hover:bg-white' }}">
+        Layanan Kami
+    </a>
+
+    {{-- Pesanan Saya --}}
+    @if(session('login_pelanggan'))
+        <a href="/pesanan"
+           class="block w-full rounded-md px-3 py-2 text-base font-medium
+           {{ request()->is('pesanan*')
+                ? 'bg-gray-900 text-white'
+                : 'text-gray-700 hover:bg-white' }}">
+            Pesanan Saya
+        </a>
+    @endif
+
+</div>
+
+
+        {{-- Profile mobile --}}
+        <div class="border-t border-gray-300 px-4 pb-4 pt-4">
 
             @if(session('login_pelanggan'))
 
-                <div class="border-b px-4 pb-3">
-
-                    <p class="font-semibold">
+                <div class="mb-3">
+                    <p class="font-semibold text-gray-900">
                         {{ session('nama') }}
                     </p>
 
                     <p class="text-sm text-gray-500">
                         {{ session('username') }}
                     </p>
-
                 </div>
+
+                <a href="{{ route('pelanggan.profil.edit') }}"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-white">
+                    Profil Saya
+                </a>
+
+                <a href="{{ route('pelanggan.cart') }}"
+                    class="flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-white">
+
+                    <span>Keranjang</span>
+
+                    @if($cartCount > 0)
+                        <span
+                            class="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white">
+                            {{ $cartCount }}
+                        </span>
+                    @endif
+
+                </a>
+
+                <form action="{{ route('pelanggan.logout') }}" method="POST">
+                    @csrf
+
+                    <button type="submit"
+                        class="block w-full rounded-md px-3 py-2 text-left text-base font-medium text-gray-700 hover:bg-white">
+                        Logout
+                    </button>
+                </form>
+
+            @else
+
+                <a href="{{ route('pelanggan.login') }}"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-white">
+                    Login
+                </a>
+
+                <a href="{{ route('pelanggan.register') }}"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-white">
+                    Register
+                </a>
 
             @endif
 
-            <div class="mt-3 space-y-1 px-2">
-
-                @if(session('login_pelanggan'))
-
-                    <a href="/pesanan" class="block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-100">
-                        Pesanan Saya
-                    </a>
-
-                    <form action="{{ route('pelanggan.logout') }}" method="POST">
-                        @csrf
-                        <button type="submit"
-                            class="block w-full rounded-md px-3 py-2 text-left text-base font-medium hover:bg-gray-100">
-                            Logout
-                        </button>
-                    </form>
-
-                @else
-
-                    <a href="{{ route('pelanggan.login') }}"
-                        class="block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-100">
-                        Login
-                    </a>
-
-                    <a href="{{ route('pelanggan.register') }}"
-                        class="block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-100">
-                        Register
-                    </a>
-
-                @endif
-
-            </div>
-
         </div>
 
+    </div>
 </nav>

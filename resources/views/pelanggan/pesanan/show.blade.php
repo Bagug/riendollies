@@ -2,27 +2,31 @@
 
     <div class="max-w-5xl mx-auto px-4 py-10">
 
-        <div class="relative flex items-center mb-8">
-            <a href="{{ route('pelanggan.pesanan') }}"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
+        <div class="px-4 pt-5 pb-4 mb-4">
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+    <div class="mb-3">
+        <a href="{{ route('pelanggan.pesanan') }}"
+            class="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium">
 
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
 
-                </svg>
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7" />
 
-                Kembali
+            </svg>
 
-            </a>
+            Kembali
+        </a>
+    </div>
 
-             <h1 class="absolute left-1/2 -translate-x-1/2 text-3xl font-bold">
-            Detail Pesanan
-        </h1>
+    <h1 class="text-center text-3xl font-bold leading-tight text-gray-900">
+        Detail Pesanan
+    </h1>
 
-        </div>
-
+</div>
         
 
         @if(session('success'))
@@ -98,7 +102,7 @@
                 Detail Layanan
             </h2>
 
-            <table class="w-full border">
+            <table class="w-full border text-xs sm:text-sm">
 
                 <thead class="bg-gray-100">
                     <tr>
@@ -106,7 +110,7 @@
                         <th class="p-3 text-center">Qty</th>
                         <th class="p-3 text-center">Alamat Acara</th>
                         <th class="p-3 text-center">Harga</th>
-                        <th class="p-3 text-right">Subtotal</th>
+                        <th class="p-3 text-center">Subtotal</th>
                     </tr>
                 </thead>
 
@@ -132,7 +136,7 @@
                                 Rp {{ number_format($detail->harga, 0, ',', '.') }}
                             </td>
 
-                            <td class="p-3 text-right">
+                            <td class="p-3 text-center">
                                 Rp {{ number_format($detail->subtotal, 0, ',', '.') }}
                             </td>
 
