@@ -16,7 +16,7 @@
 
     {{-- Judul --}}
     <h1 class="max-w-[220px] text-center text-3xl font-bold leading-tight text-gray-900 md:max-w-none md:text-4xl">
-        Keranjang Saya
+        Keranjang
     </h1>
 
 </div>
